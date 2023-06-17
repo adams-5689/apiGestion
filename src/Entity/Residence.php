@@ -61,6 +61,13 @@ class Residence
     private $salon;
 
     /**
+    * @var string
+    *
+    * @ORM\Column(name="prixJournalier", type="decimal", precision=10, scale=2, nullable=false)
+    */
+    private $prixJournalier;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="douche", type="integer", nullable=false)
@@ -206,6 +213,17 @@ class Residence
         return $this;
     }
 
+    public function getPrixJournalier(): ?string
+    {
+        return $this->prixJournalier;
+    }
+
+    public function setPrixJournalier(?string $prixJournalier): self
+    {
+        $this->prixJournalier = $prixJournalier;
+        return $this;
+    }
+    
     public function getDescription(): ?string
     {
         return $this->description;

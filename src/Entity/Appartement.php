@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Immeuble;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="appartement", indexes={@ORM\Index(name="immeuble_id", columns={"immeuble_id"})})
  * @ORM\Entity
  */
+#[ApiResource()]
 class Appartement
 {
     /**
@@ -28,6 +31,7 @@ class Appartement
      */
     private $nombreChambres;
 
+
     /**
      * @var int
      *
@@ -43,6 +47,15 @@ class Appartement
     private $douche;
 
     /**
+    * @var string
+    *
+    * @ORM\Column(name="prix_location", type="decimal", precision=10, scale=2, nullable=false)
+    */
+    private $prixLocation;
+
+
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
@@ -50,14 +63,14 @@ class Appartement
     private $description;
 
     /**
-     * @var App\Entity\Immeuble|null
+     * @var int|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Immeuble")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="immeuble_id", referencedColumnName="id")
      * })
      */
-    private $immeuble;
+    private $immeuble_id;
 
     public function getId(): ?int
     {
@@ -75,6 +88,7 @@ class Appartement
 
         return $this;
     }
+
 
     public function getSalon(): ?int
     {
@@ -112,17 +126,29 @@ class Appartement
         return $this;
     }
 
-    public function getImmeuble(): ?Immeuble
+    public function getImmeuble(): ?int
     {
-        return $this->immeuble;
+        return $this->immeuble_id;
     }
 
-    public function setImmeuble(?Immeuble $immeuble): self
+    public function setImmeuble(?int $immeuble): self
     {
-        $this->immeuble = $immeuble;
+        $this->immeuble_id = $immeuble;
 
         return $this;
     }
+
+    public function getprixLocation(): ?string
+    {
+        return $this->prixLocation;
+    }
+
+    public function setprixLocation(string $prixLocation): self
+    {
+        $this->prixLocation = $prixLocation;
+        return $this;
+    }
+
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Administrateur;
 use App\Entity\Locataire;
 use App\Entity\Gestionnaireimmobilier;
@@ -16,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="connexion", indexes={@ORM\Index(name="gestionnaire_immobilier_id", columns={"gestionnaire_immobilier_id"}), @ORM\Index(name="locataire_id", columns={"locataire_id"}), @ORM\Index(name="administrateur_id", columns={"administrateur_id"}), @ORM\Index(name="utilisateur_id", columns={"utilisateur_id"}), @ORM\Index(name="agence_immobiliere_id", columns={"agence_immobiliere_id"})})
  * @ORM\Entity
  */
+#[ApiResource()]
 class Connexion
 {
     /**

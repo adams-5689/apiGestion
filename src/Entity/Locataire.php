@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="locataire")
  * @ORM\Entity
  */
+#[ApiResource()]
 class Locataire
 {
     /**
@@ -56,6 +58,13 @@ class Locataire
      * @ORM\Column(name="date_paiement", type="date", nullable=true)
      */
     private $datePaiement;
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="caution", type="decimal", precision=10, scale=2, nullable=false)
+     * 
+     */
+    private $caution;
 
     /**
      * @var string
@@ -127,6 +136,17 @@ class Locataire
     public function setMontantLoyer(string $montantLoyer): self
     {
         $this->montantLoyer = $montantLoyer;
+
+        return $this;
+    }
+
+    public function getCaution(): ?string
+    {
+        return $this->caution;
+    }
+    public function setCaution(?string $caution): self
+    {
+        $this->caution = $caution;
 
         return $this;
     }

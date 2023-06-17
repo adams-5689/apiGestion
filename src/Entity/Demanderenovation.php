@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Locataire;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="demanderenovation", indexes={@ORM\Index(name="locataire_id", columns={"locataire_id"})})
  * @ORM\Entity
  */
+#[ApiResource()]
 class Demanderenovation
 {
     /**

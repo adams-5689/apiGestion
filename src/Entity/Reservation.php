@@ -5,6 +5,7 @@ use App\Entity\Residence;
 use App\Entity\Utilisateur;
 use App\Entity\Gestionnaireimmobilier;
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="reservation", indexes={@ORM\Index(name="residence_id", columns={"residence_id"}), @ORM\Index(name="gestionnaire_immobilier_id", columns={"gestionnaire_immobilier_id"}), @ORM\Index(name="utilisateur_id", columns={"utilisateur_id"})})
  * @ORM\Entity
  */
+#[ApiResource()]
 class Reservation
 {
     /**
@@ -46,14 +48,14 @@ class Reservation
     private $dateFin;
 
     /**
-     * @var App\Entity\Utilisateur|null
+     * @var int|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
      * })
      */
-    private $utilisateur;
+    private $utilisateur_id;
 
     /**
      * @var App\Entity\Residence|null
@@ -68,7 +70,7 @@ class Reservation
     /**
      * @var App\Entity\Gestionnaireimmobilier|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gestionnaireimmobilie")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gestionnaireimmobilier")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="gestionnaire_immobilier_id", referencedColumnName="id")
      * })
@@ -116,14 +118,14 @@ class Reservation
         return $this;
     }
 
-    public function getUtilisateur(): ?Utilisateur
+    public function getUtilisateur(): ?int
     {
-        return $this->utilisateur;
+        return $this->utilisateur_id;
     }
 
-    public function setUtilisateur(?Utilisateur $utilisateur): self
+    public function setUtilisateur(?int $utilisateur_id): self
     {
-        $this->utilisateur = $utilisateur;
+        $this->utilisateur_id = $utilisateur_id;
 
         return $this;
     }

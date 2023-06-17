@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Gestionnaireimmobilier;
 use App\Entity\Locataire;
 
@@ -14,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="paiement", indexes={@ORM\Index(name="locataire_id", columns={"locataire_id"}), @ORM\Index(name="gestionnaire_immobilier_id", columns={"gestionnaire_immobilier_id"})})
  * @ORM\Entity
  */
+#[ApiResource()]
 class Paiement
 {
     /**
@@ -44,6 +46,7 @@ class Paiement
      *
      * @ORM\Column(name="type_paiement", type="string", length=20, nullable=false)
      */
+
     private $typePaiement;
 
     /**
@@ -53,7 +56,9 @@ class Paiement
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="gestionnaire_immobilier_id", referencedColumnName="id")
      * })
+     * 
      */
+    
     private $gestionnaireImmobilier;
 
     /**
@@ -121,7 +126,7 @@ class Paiement
 
     public function getLocataire(): ?Locataire
     {
-        return $this->locataire;
+        return $this->locataire->getId();
     }
 
     public function setLocataire(?Locataire $locataire): self
@@ -130,6 +135,4 @@ class Paiement
 
         return $this;
     }
-
-
 }
